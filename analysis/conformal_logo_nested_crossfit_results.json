@@ -1,0 +1,49 @@
+{
+  "per_geom_coverage": {
+    "CHIEF_chamfer_arm": 0.0,
+    "CHIEF_disc_arm": 0.0,
+    "CHIEF_non_chamfer_arm": 0.0,
+    "CHIEF_original_arm": 0.0,
+    "CHIEF_rounded_fillet_arm": 0.0,
+    "Liu_CHIEF_model": 0.1,
+    "Vrancik_8pole": 0.0,
+    "Vrancik_alternator_shrouded": 0.5217391304347826,
+    "Vrancik_cylindrical": 0.0,
+    "Vrancik_cylindrical_in_stator": 0.0,
+    "ZJU400_enclosed_arm": 1.0,
+    "Zheng_scaled_model": 0.125
+  },
+  "per_geom_n": {
+    "CHIEF_chamfer_arm": 5,
+    "CHIEF_disc_arm": 5,
+    "CHIEF_non_chamfer_arm": 5,
+    "CHIEF_original_arm": 17,
+    "CHIEF_rounded_fillet_arm": 5,
+    "Liu_CHIEF_model": 20,
+    "Vrancik_8pole": 6,
+    "Vrancik_alternator_shrouded": 23,
+    "Vrancik_cylindrical": 6,
+    "Vrancik_cylindrical_in_stator": 6,
+    "ZJU400_enclosed_arm": 8,
+    "Zheng_scaled_model": 8
+  },
+  "q_hats": {
+    "CHIEF_chamfer_arm": 4.787094189477817,
+    "CHIEF_disc_arm": 5.198517047419731,
+    "CHIEF_non_chamfer_arm": 5.385193088727539,
+    "CHIEF_original_arm": 6.710088629521339,
+    "CHIEF_rounded_fillet_arm": 6.067432288901997,
+    "Liu_CHIEF_model": 7.8214597704387465,
+    "Vrancik_8pole": 5.614534408870073,
+    "Vrancik_alternator_shrouded": 7.9606079009202615,
+    "Vrancik_cylindrical": 5.196489382676783,
+    "Vrancik_cylindrical_in_stator": 5.601202412219944,
+    "ZJU400_enclosed_arm": 5.941352805056991,
+    "Zheng_scaled_model": 5.294226430513424
+  },
+  "logo_min": 0.0,
+  "logo_min_geometry": "CHIEF_chamfer_arm",
+  "weighted_mean_coverage": 0.20175438596491227,
+  "n_splits_inner": 200,
+  "method": "outer LOGO fold excludes test geometry entirely; inner calibration scores come from repeated 50/50 random splits within the 11 training geometries, pooled, genuinely out-of-fold; final predictor for scoring the test geometry is fit on all 11 training geometries"
+}

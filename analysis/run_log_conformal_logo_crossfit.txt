@@ -1,0 +1,20 @@
+n=114  geometries=12  features=['Re_Omega']
+Original (leaky) global exponent: {'Re_Omega': -0.0745116509833754}
+
+Per-geometry LOGO coverage (leakage-free cross-fit, target 0.90):
+  CHIEF_chamfer_arm                n=5    coverage=0.0000  q_hat=1.8663
+  CHIEF_disc_arm                   n=5    coverage=0.0000  q_hat=1.8878
+  CHIEF_non_chamfer_arm            n=5    coverage=0.0000  q_hat=1.8785
+  CHIEF_original_arm               n=17   coverage=0.0000  q_hat=1.8853
+  CHIEF_rounded_fillet_arm         n=5    coverage=0.0000  q_hat=1.8760
+  Liu_CHIEF_model                  n=20   coverage=0.0000  q_hat=1.8572
+  Vrancik_8pole                    n=6    coverage=0.0000  q_hat=1.8794
+  Vrancik_alternator_shrouded      n=23   coverage=0.0000  q_hat=1.8503
+  Vrancik_cylindrical              n=6    coverage=0.0000  q_hat=1.8928
+  Vrancik_cylindrical_in_stator    n=6    coverage=0.0000  q_hat=1.8963
+  ZJU400_enclosed_arm              n=8    coverage=0.1250  q_hat=1.8782
+  Zheng_scaled_model               n=8    coverage=0.0000  q_hat=1.8772
+
+LOGO-min (cross-fit, honest) = 0.0000  (geometry: CHIEF_chamfer_arm)
+
+Saved: conformal_logo_crossfit_results.json

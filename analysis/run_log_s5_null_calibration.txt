@@ -1,0 +1,24 @@
+n=114  q_true=-0.0745  K=200 replicates
+Real corpus support: 8/114 below Ma=0.127 (preserved exactly, same x's every replicate)
+  20/200  last BF=1.1e+04  verdict=facility-artifact
+  40/200  last BF=1.27  verdict=no-regime-detected
+  60/200  last BF=0.00877  verdict=no-regime-detected
+  80/200  last BF=0.269  verdict=no-regime-detected
+  100/200  last BF=0.794  verdict=no-regime-detected
+  120/200  last BF=0.511  verdict=no-regime-detected
+  140/200  last BF=0.107  verdict=no-regime-detected
+  160/200  last BF=0.017  verdict=no-regime-detected
+  180/200  last BF=0.00877  verdict=no-regime-detected
+  200/200  last BF=0.00877  verdict=no-regime-detected
+
+============================================================
+RESULTS
+============================================================
+Verdict distribution under null (real support structure): {'no-regime-detected': 174, 'facility-artifact': 13, 'report-with-disclaimer': 6, 'ambiguous': 6, 'report-as-physics': 1}
+False-positive rate (verdict is NOT facility-artifact/no-regime): 13/200 = 0.0650
+
+BF_S5/S1 under null: mean=1.67e+04  median=0.114  max=3.3e+06
+Fraction of null replicates with BF >= real fitted value (5.8e+05): 0.0050
+Fraction of null replicates with BF >= real sweep peak (6.2e+06): 0.0000
+
+Saved: s5_null_calibration_real_support_results.json

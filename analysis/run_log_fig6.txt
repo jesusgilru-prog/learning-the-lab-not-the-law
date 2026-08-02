@@ -1,0 +1,86 @@
+calibracion t:     +2.4062 px/s          residuo max 0.024 px
+calibracion omega: -124.3273 px/(rad/s)  residuo max 0.021 px
+blue     ( 3 kPa): 79 puntos, t=[1.0,79.0] s, omega=[0.026,1.046] rad/s
+magenta  (10 kPa): 78 puntos, t=[1.0,78.0] s, omega=[0.016,1.048] rad/s
+guardado: /home/jesus/paper8_hipergravedad/analysis_identifiability/liu_fig6_spindown.csv
+ 3 kPa: n=79   windage max durante spin-down = 0.0022 N m
+10 kPa: n=78   windage max durante spin-down = 0.0072 N m
+
+(a) VALIDACION: ajuste con M_f constante (debe dar ~10.99 N m)
+
+  modelo M_f = M0: rmse=11.76 mrad/s   SSE=0.021731
+    M0         = +10.97308 +- 0.03537
+    w0_3kPa    = +1.06833 +- 0.00211
+    w0_10kPa   = +1.05909 +- 0.00210
+
+(b) DEPENDENCIA CON LA VELOCIDAD
+
+  modelo M_f = M0 + c1*omega: rmse=8.03 mrad/s   SSE=0.010119
+    M0         = +12.36455 +- 0.10688
+    c1*omega   = -2.46407 +- 0.18430
+    w0_3kPa    = +1.04972 +- 0.00196
+    w0_10kPa   = +1.04117 +- 0.00192
+
+  modelo M_f = M0 + c2*omega^2: rmse=8.77 mrad/s   SSE=0.012086
+    M0         = +11.70848 +- 0.07166
+    c2*omega^2 = -1.98631 +- 0.17904
+    w0_3kPa    = +1.04853 +- 0.00232
+    w0_10kPa   = +1.04027 +- 0.00224
+
+  M_f local (ventanas de 12 puntos, pendiente OLS, windage restado):
+    3 kPa   omega=0.988  M_f= 9.458 +- 0.209 N m
+    3 kPa   omega=0.916  M_f=10.361 +- 0.209 N m
+    3 kPa   omega=0.843  M_f=10.054 +- 0.244 N m
+    3 kPa   omega=0.769  M_f=11.075 +- 0.227 N m
+    3 kPa   omega=0.691  M_f=11.169 +- 0.323 N m
+    3 kPa   omega=0.610  M_f=11.784 +- 0.292 N m
+    3 kPa   omega=0.531  M_f=10.684 +- 0.249 N m
+    3 kPa   omega=0.456  M_f=10.933 +- 0.304 N m
+    3 kPa   omega=0.379  M_f=10.786 +- 0.308 N m
+    3 kPa   omega=0.302  M_f=10.920 +- 0.229 N m
+    3 kPa   omega=0.224  M_f=11.727 +- 0.281 N m
+    3 kPa   omega=0.136  M_f=13.467 +- 0.277 N m
+    10 kPa  omega=0.980  M_f=11.083 +- 0.359 N m
+    10 kPa  omega=0.902  M_f=10.769 +- 0.309 N m
+    10 kPa  omega=0.828  M_f=10.323 +- 0.357 N m
+    10 kPa  omega=0.755  M_f=10.849 +- 0.373 N m
+    10 kPa  omega=0.680  M_f=10.602 +- 0.315 N m
+    10 kPa  omega=0.605  M_f=10.672 +- 0.230 N m
+    10 kPa  omega=0.531  M_f=10.401 +- 0.253 N m
+    10 kPa  omega=0.456  M_f=10.910 +- 0.227 N m
+    10 kPa  omega=0.381  M_f=10.664 +- 0.249 N m
+    10 kPa  omega=0.300  M_f=12.239 +- 0.264 N m
+    10 kPa  omega=0.207  M_f=13.730 +- 0.401 N m
+
+  recta ponderada sobre ventanas: M_f = (12.398+-0.143) + (-2.461+-0.220)*omega  [N m; omega en 0.1-1.05]
+  -> la friccion BAJA con omega en el rango medido (rama descendente de
+     Stribeck: regimen limite/mixto). La extrapolacion lineal a 44-99 rad/s
+     es negativa, o sea, fisicamente sin sentido: el spin-down acota el
+     termino de contorno (carga), no el termino hidrodinamico EHL.
+
+(c) ESCANEO DE FORMAS DEL ERROR DE FRICCION sobre los 15 puntos v4
+    P_pub = P_true + DM(omega)*omega;  DM = (c-1)*MF0*(omega/omega_max)^q
+
+    q = 0.0  (constante):
+  c=1.25  (M_f(omega_max)= 13.7 N m)             alpha-beta=-0.0410+-0.0263  t=-1.56  p=0.1457
+  c=1.50  (M_f(omega_max)= 16.5 N m)             alpha-beta=-0.0055+-0.0357  t=-0.15  p=0.8797
+  c=2.00  (M_f(omega_max)= 22.0 N m)             alpha-beta=+0.0773+-0.0637  t=+1.21  p=0.2482
+
+    q = 0.6  (crece con omega):
+  c=1.25  (M_f(omega_max)= 13.7 N m)             alpha-beta=-0.0625+-0.0228  t=-2.74  p=0.01779
+  c=1.50  (M_f(omega_max)= 16.5 N m)             alpha-beta=-0.0510+-0.0264  t=-1.93  p=0.07708
+  c=2.00  (M_f(omega_max)= 22.0 N m)             alpha-beta=-0.0250+-0.0367  t=-0.68  p=0.5094
+
+    q = 0.8  (crece con omega):
+  c=1.25  (M_f(omega_max)= 13.7 N m)             alpha-beta=-0.0676+-0.0221  t=-3.05  p=0.01006
+  c=1.50  (M_f(omega_max)= 16.5 N m)             alpha-beta=-0.0614+-0.0247  t=-2.49  p=0.02856
+  c=2.00  (M_f(omega_max)= 22.0 N m)             alpha-beta=-0.0474+-0.0319  t=-1.49  p=0.1633
+
+    q = 1.0  (crece con omega):
+  c=1.25  (M_f(omega_max)= 13.7 N m)             alpha-beta=-0.0718+-0.0217  t=-3.31  p=0.006185
+  c=1.50  (M_f(omega_max)= 16.5 N m)             alpha-beta=-0.0700+-0.0234  t=-2.99  p=0.01132
+  c=2.00  (M_f(omega_max)= 22.0 N m)             alpha-beta=-0.0658+-0.0284  t=-2.32  p=0.03909
+
+    sobre-sustraccion del termino constante (lo que implica Stribeck):
+  M_f x 0.95 (constante)                         alpha-beta=-0.0794+-0.0196  t=-4.05  p=0.001614
+  M_f x 0.90 (constante)                         alpha-beta=-0.0855+-0.0191  t=-4.48  p=0.0007486

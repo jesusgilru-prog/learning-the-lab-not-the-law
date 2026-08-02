@@ -1,0 +1,87 @@
+
+==============================================================================
+1-2. Tabla instalacion x umbral: Fisher-Freeman-Halton y Cramer's V
+==============================================================================
+  umbral Ma = 0.127
+  instalacion     <thr  >=thr   % por encima
+  Liu2024            0     20         100.0%
+  Vrancik1968        4     37          90.2%
+  Xia2024            3     42          93.3%
+  Zheng2024          1      7          87.5%
+  TOTAL              8    106
+
+  Chi^2 = 2.3577  p = 0.5016   (artefacto guardado: 2.36 / 0.5016)
+  Cramer's V = 0.1438   (artefacto guardado: 0.1438)
+  Fisher-Freeman-Halton Monte Carlo (200,000 remuestreos, semilla 20260731): p = 0.4072
+
+  El manuscrito reporta p = 0.41 sin log. El valor recalculado es 0.407.
+  En cualquier caso p >> 0.05: el umbral NO separa instalaciones.
+
+  'indicador de no-Liu2024': por encima del umbral esta el 100% de Liu
+  y tambien el 91.5% del resto (86/94).
+
+==============================================================================
+3-5. Prefactores por geometria: ANOVA, Cochran Q, R^2 de grupo unico
+==============================================================================
+                     geometry     logC  n      source
+            CHIEF_chamfer_arm  -3.9576  5     Xia2024
+               CHIEF_disc_arm  -5.0001  5     Xia2024
+        CHIEF_non_chamfer_arm  -3.5801  5     Xia2024
+           CHIEF_original_arm  -3.7259 17     Xia2024
+     CHIEF_rounded_fillet_arm  -3.8164  5     Xia2024
+              Liu_CHIEF_model  -1.4019 20     Liu2024
+                Vrancik_8pole  -0.6824  6 Vrancik1968
+  Vrancik_alternator_shrouded  -1.6046 23 Vrancik1968
+          Vrancik_cylindrical  -1.2198  6 Vrancik1968
+Vrancik_cylindrical_in_stator  -0.7922  6 Vrancik1968
+          ZJU400_enclosed_arm  -2.1585  8     Xia2024
+           Zheng_scaled_model  -1.7951  8   Zheng2024
+
+  ANOVA de log C entre instalaciones: F = 10.535  p = 0.003751   (manuscrito: F = 10.5, p = 0.0038)
+  AVISO: los 12 log C no son independientes -- se estimaron
+  conjuntamente con un mismo exponente q y comparten incertidumbre.
+  Este ANOVA es descriptivo, no inferencial.
+
+  Contenido real de prefactor_analysis.json:
+    {
+      "regressions": {
+        "log_Ci_vs_log_Pi_gap": {
+          "r2": 0.4077914411280794,
+          "intercept": -4.33776451367986,
+          "slope_Pi_gap": -0.6154485872244919,
+          "ci_intercept": [
+            -6.193101244612872,
+            -2.744578378099233
+          ],
+          "ci_slope_Pi_gap": [
+            -1.0302117764855205,
+            -0.25047379721926666
+          ]
+        },
+        "log_Ci_vs_log_Pi_gap_blockage": {
+          "r2": 0.7710304045763099,
+          "intercept": 1.2250695360905084,
+          "slope_Pi_gap": 0.41990100510391826,
+          "slope_Pi_blockage": 1.2103206186074733,
+          "ci_slope_Pi_gap": [
+            -0.4964338695
+
+  Los tres R^2 de grupo unico (0.139 / 0.726 / 0.762) que cita el
+  manuscrito NO estan en este artefacto. Hay que regenerarlos con un
+  script propio o retirarlos del texto.
+
+==============================================================================
+6. MMD por pares sobre (log Re, Ma) -- tabla S7 del suplemento
+==============================================================================
+  ancho de banda por heuristica de la mediana: gamma = 0.4569
+
+  par                               n1,n2  MMD^2 recalc  publicado
+  Liu2024 vs Vrancik1968          20, 41         0.101      0.133
+  Liu2024 vs Xia2024              20, 45         0.757      0.600
+  Liu2024 vs Zheng2024            20,  8         0.125      0.163
+  Vrancik1968 vs Xia2024          41, 45         0.913      0.752
+  Vrancik1968 vs Zheng2024        41,  8         0.158      0.189
+  Xia2024 vs Zheng2024            45,  8         0.634      0.458
+
+  Si estos valores no reproducen los publicados, la tabla S7 no tiene
+  artefacto y hay que regenerarla o retirarla.

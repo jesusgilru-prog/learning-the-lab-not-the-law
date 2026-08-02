@@ -1,0 +1,20 @@
+/home/jesus/hyperscale-chief/src/sr_engine/class_sr.py:206: RuntimeWarning: invalid value encountered in sqrt
+  se = np.sqrt(np.diag(hess_inv))
+n=114  geometries=12  n_splits=200
+  CHIEF_chamfer_arm                n_test=5    n_pooled_cal=10835  q_hat=4.7871  coverage=0.0000  [17s]
+  CHIEF_disc_arm                   n_test=5    n_pooled_cal=10838  q_hat=5.1985  coverage=0.0000  [35s]
+  CHIEF_non_chamfer_arm            n_test=5    n_pooled_cal=10854  q_hat=5.3852  coverage=0.0000  [52s]
+  CHIEF_original_arm               n_test=17   n_pooled_cal=9639   q_hat=6.7101  coverage=0.0000  [69s]
+  CHIEF_rounded_fillet_arm         n_test=5    n_pooled_cal=10850  q_hat=6.0674  coverage=0.0000  [86s]
+  Liu_CHIEF_model                  n_test=20   n_pooled_cal=9221   q_hat=7.8215  coverage=0.1000  [104s]
+  Vrancik_8pole                    n_test=6    n_pooled_cal=10640  q_hat=5.6145  coverage=0.0000  [121s]
+  Vrancik_alternator_shrouded      n_test=23   n_pooled_cal=9103   q_hat=7.9606  coverage=0.5217  [139s]
+  Vrancik_cylindrical              n_test=6    n_pooled_cal=10618  q_hat=5.1965  coverage=0.0000  [155s]
+  Vrancik_cylindrical_in_stator    n_test=6    n_pooled_cal=10601  q_hat=5.6012  coverage=0.0000  [173s]
+  ZJU400_enclosed_arm              n_test=8    n_pooled_cal=10436  q_hat=5.9414  coverage=1.0000  [191s]
+  Zheng_scaled_model               n_test=8    n_pooled_cal=10388  q_hat=5.2942  coverage=0.1250  [207s]
+
+LOGO-min (nested, out-of-fold calibration) = 0.0000 (CHIEF_chamfer_arm)
+Weighted mean coverage = 0.2018
+
+Saved. Elapsed: 207s

@@ -1,0 +1,12 @@
+n=114  groups=['Ng', 'Re', 'M']  knobs=['omega_rad_s', 'R_m', 'p_Pa', 'T_K']
+
+nuisance = facility (F=4)  (n_levels=4)
+  residual rank of (Ng,Re,M) after removing source: 3/3
+  singular values (unit-norm columns): [1.6307 0.5772 0.0887]
+  kappa = 18.39  -- bien condicionado
+
+nuisance = geometry (G=12, what class-SR's C_i actually use)  (n_levels=12)
+  residual rank of (Ng,Re,M) after removing geometry_id: 3/3
+  singular values (unit-norm columns): [1.6051 0.6507 0.0181]
+  kappa = 88.69  -- MAL CONDICIONADO (>30)
+

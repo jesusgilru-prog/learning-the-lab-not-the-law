@@ -1,0 +1,133 @@
+dataset: /home/jesus/hyperscale-chief/data/processed/cross_rotor_dataset_v3.csv
+n=114  sources=['Liu2024', 'Vrancik1968', 'Xia2024', 'Zheng2024']  geometries=12
+
+==============================================================================
+0. The tabulated Pi groups are exactly the theoretical monomials
+==============================================================================
+  g_level  (Liu2024    ) max relative error = 7.78e-04
+  g_level  (Xia2024    ) max relative error = 3.42e-04
+  Re_Omega               max relative error = 4.44e-16
+  M_tip                  max relative error = 1.33e-15
+
+==============================================================================
+1. Structural identifiability = rank of the exponent matrix restricted to the controls actually varied
+==============================================================================
+
+Liu2024  (n=20)
+  controls varied : ['omega_rad_s', 'rho_kgm3']
+  exponent matrix (rows = g_level, Re_Omega, M_tip):
+[[2. 0.]
+ [1. 1.]
+ [1. 0.]]
+  rank = 2  -> at most 2 of the 3 groups are separately identifiable
+    g_level   vs Re_Omega : exactly degenerate=False  corr(log,log)=+0.319422
+    g_level   vs M_tip    : exactly degenerate=True   corr(log,log)=+1.000000
+    Re_Omega  vs M_tip    : exactly degenerate=False  corr(log,log)=+0.319422
+
+Vrancik1968  (n=41)
+  controls varied : ['omega_rad_s', 'R_m', 'rho_kgm3', 'mu_Pas', 'a_sound']
+  exponent matrix (rows = g_level, Re_Omega, M_tip):
+[[ 2.  1.  0.  0.  0.]
+ [ 1.  2.  1. -1.  0.]
+ [ 1.  1.  0.  0. -1.]]
+  rank = 3  -> at most 3 of the 3 groups are separately identifiable
+    Re_Omega  vs M_tip    : exactly degenerate=False  corr(log,log)=+0.441610
+
+Xia2024  (n=45)
+  controls varied : ['omega_rad_s', 'R_m']
+  exponent matrix (rows = g_level, Re_Omega, M_tip):
+[[2. 1.]
+ [1. 2.]
+ [1. 1.]]
+  rank = 2  -> at most 2 of the 3 groups are separately identifiable
+    g_level   vs Re_Omega : exactly degenerate=False  corr(log,log)=+0.999846
+    g_level   vs M_tip    : exactly degenerate=False  corr(log,log)=+0.999983
+    Re_Omega  vs M_tip    : exactly degenerate=False  corr(log,log)=+0.999931
+
+Zheng2024  (n=8)
+  controls varied : ['omega_rad_s']
+  exponent matrix (rows = g_level, Re_Omega, M_tip):
+[[2.]
+ [1.]
+ [1.]]
+  rank = 1  -> at most 1 of the 3 groups are separately identifiable
+    Re_Omega  vs M_tip    : exactly degenerate=True   corr(log,log)=+1.000000
+
+==============================================================================
+2. Practical identifiability = conditioning of the realised log-design matrix
+==============================================================================
+Liu2024      groups=['g_level', 'Re_Omega', 'M_tip']
+             singular values=[4.1539e+00 2.5798e+00 7.6678e-05]  cond=5.42e+04
+Vrancik1968  groups=['Re_Omega', 'M_tip']
+             singular values=[6.9446 1.6905]  cond=4.11
+Xia2024      groups=['g_level', 'Re_Omega', 'M_tip']
+             singular values=[1.2298e+01 7.9638e-02 5.6897e-15]  cond=2.16e+15
+Zheng2024    groups=['Re_Omega', 'M_tip']
+             singular values=[2.6985e+00 3.6469e-15]  cond=7.4e+14
+
+==============================================================================
+3. Reynolds-similarity test inside a single facility (Liu2024, balanced 5x4 factorial in Omega and chamber pressure)
+==============================================================================
+If Cp = f(Re) with Re ~ rho*Omega, then in
+    log Cp = c + alpha*log(Omega) + beta*log(rho)
+Reynolds similarity requires alpha = beta.  H0: alpha - beta = 0.
+Because R and T are fixed, M_tip ~ Omega, so alpha - beta is exactly
+the exponent of the second group (Mach -- or, indistinguishably, g-level).
+
+  all 20 points   n=20  R2=0.447
+    alpha(Omega) = -0.1783 +- 0.0554
+    beta (rho)   = -0.0345 +- 0.0187
+    alpha - beta = -0.1438 +- 0.0585   t=-2.46  p=0.02501   CI95=[-0.2584, -0.0291]
+    verdict: REJECTS Reynolds similarity
+
+  digitized only (drops the 10 kPa column,
+                 which is a fitted constant)   n=15  R2=0.544
+    alpha(Omega) = -0.2396 +- 0.0670
+    beta (rho)   = -0.0476 +- 0.0383
+    alpha - beta = -0.1920 +- 0.0772   t=-2.49  p=0.02856   CI95=[-0.3432, -0.0407]
+    verdict: REJECTS Reynolds similarity
+
+  bootstrap (20k, seed 20260730): mean=-0.1455  CI95=[-0.2386, -0.0276]  P(>=0)=0.0117
+  jackknife: min=-0.1723 max=-0.1144  all negative = True
+  leave-one-Omega-out: 44.27:-0.087  62.61:-0.139  76.68:-0.156  88.54:-0.134  98.99:-0.189
+  leave-one-pressure-out: 10000:-0.192  30000:-0.128  50000:-0.101  101000:-0.144
+
+  same fit in (Re, M):  log Cp = -2.200 + (-0.0345+-0.0187)*log Re + (-0.1438+-0.0585)*log M    R2=0.447
+    Re: t=-1.85  p=0.08219
+    M : t=-2.46  p=0.02501
+
+==============================================================================
+4. Cp ~ Re^a fitted inside each geometry (12 geometries, not 4 facilities)
+==============================================================================
+  Liu2024      Liu_CHIEF_model                n= 20  a=-0.049  R2=0.251  Re span x23
+  Vrancik1968  Vrancik_8pole                  n=  6  a=-0.227  R2=0.724  Re span x3
+  Vrancik1968  Vrancik_alternator_shrouded    n= 23  a=-0.325  R2=0.785  Re span x58
+  Vrancik1968  Vrancik_cylindrical            n=  6  a=-0.327  R2=0.850  Re span x3
+  Vrancik1968  Vrancik_cylindrical_in_stator  n=  6  a=-0.830  R2=0.877  Re span x4
+  Xia2024      CHIEF_chamfer_arm              n=  5  a=+0.070  R2=0.231  Re span x6
+  Xia2024      CHIEF_disc_arm                 n=  5  a=-0.019  R2=0.058  Re span x6
+  Xia2024      CHIEF_non_chamfer_arm          n=  5  a=-0.111  R2=0.684  Re span x6
+  Xia2024      CHIEF_original_arm             n= 17  a=-0.049  R2=0.079  Re span x6
+  Xia2024      CHIEF_rounded_fillet_arm       n=  5  a=-0.053  R2=0.723  Re span x6
+  Xia2024      ZJU400_enclosed_arm            n=  8  a=-0.303  R2=0.912  Re span x3
+  Zheng2024    Zheng_scaled_model             n=  8  a=-0.128  R2=0.630  Re span x9
+
+  across 12 geometries: mean=-0.196  median=-0.119  sd=0.239  range=[-0.830, +0.070]
+             count      mean       std
+source                                
+Liu2024          1 -0.049184       NaN
+Vrancik1968      4 -0.427263  0.272606
+Xia2024          6 -0.077440  0.125197
+Zheng2024        1 -0.127702       NaN
+
+==============================================================================
+5. Pooled fit vs leave-one-facility-out (why the pooled law is a facility artifact)
+==============================================================================
+  ['Re_Omega']                                                        
+     in-sample R2=0.828   LOGO rmse(log): Zheng2024=0.353  Liu2024=0.692  Xia2024=1.494  Vrancik1968=0.410   mean=0.737
+  ['Re_Omega', 'M_tip']                                               
+     in-sample R2=0.828   LOGO rmse(log): Zheng2024=0.382  Liu2024=0.699  Xia2024=1.490  Vrancik1968=0.435   mean=0.752
+  ['Re_Omega', 'Pi_confinement', 'Pi_gap', 'Pi_aspect_axial', 'Pi_blockage']
+     in-sample R2=0.870   LOGO rmse(log): Zheng2024=2.556  Liu2024=0.956  Xia2024=2.575  Vrancik1968=0.949   mean=1.759
+  ['Re_Omega', 'M_tip', 'Pi_confinement', 'Pi_gap', 'Pi_aspect_axial', 'Pi_blockage']
+     in-sample R2=0.875   LOGO rmse(log): Zheng2024=2.569  Liu2024=1.035  Xia2024=2.548  Vrancik1968=2.183   mean=2.084

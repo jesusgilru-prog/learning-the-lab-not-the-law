@@ -1,0 +1,198 @@
+datos: /home/jesus/paper8_hipergravedad/analysis_identifiability/cross_rotor_dataset_v4.csv
+n=114  fuentes=['Liu2024', 'Vrancik1968', 'Xia2024', 'Zheng2024']  geometrias=12
+
+==============================================================================
+0. Test de similaridad de Reynolds: antes y despues de las correcciones
+==============================================================================
+H0: alpha = beta, donde alpha = d log Cp / d log Omega y beta = d log Cp / d log rho.
+Con R y T fijos dentro de Liu2024, alpha-beta es el exponente del segundo grupo.
+
+  v3 (lectura a ojo), 20 puntos                n= 20 R2=0.447  alpha=-0.1783 beta=-0.0345  alpha-beta=-0.1438+-0.0585  t=-2.46 p=0.02501
+  v3 (lectura a ojo), 15 digitalizados         n= 15 R2=0.544  alpha=-0.2396 beta=-0.0476  alpha-beta=-0.1920+-0.0772  t=-2.49 p=0.02856
+  v4 (re-digitalizado), 20 puntos              n= 20 R2=0.557  alpha=-0.0644 beta=-0.0129  alpha-beta=-0.0514+-0.0171  t=-3.01 p=0.007877
+  v4 (re-digitalizado), 15 digitalizados       n= 15 R2=0.690  alpha=-0.0877 beta=-0.0144  alpha-beta=-0.0733+-0.0203  t=-3.60 p=0.003624
+
+==============================================================================
+1. Identificabilidad del diseno: rango a priori vs rango realizado
+==============================================================================
+Coordenadas = mandos reales (Omega, R, p, T). rho, mu y a son funciones de p y T.
+El criterio exacto es rank(D_c E^T) sobre el diseno REALIZADO; restringir E a los
+mandos variados solo da una cota superior (falla si dos mandos se mueven en tandem).
+
+Liu2024      n= 20  mandos variados=['omega_rad_s', 'p_Pa']
+             rango a priori (cota) = 2   rango realizado = 2   COINCIDEN
+             valores singulares=[4.1539e+00 2.5798e+00 2.6169e-16]
+             cond sin normalizar=1.61   cond BKW (columnas a norma 1)=1.622   bien condicionado
+               g_level   vs Re_Omega : separables   corr(log,log)=+0.319422
+               g_level   vs M_tip    : DEGENERADO  corr(log,log)=+1.000000
+               Re_Omega  vs M_tip    : separables   corr(log,log)=+0.319422
+
+Vrancik1968  n= 41  mandos variados=['omega_rad_s', 'R_m', 'p_Pa', 'T_K']
+             rango a priori (cota) = 3   rango realizado = 3   COINCIDEN
+             valores singulares=[5.2166 3.2294 0.5376]
+             cond sin normalizar=9.704   cond BKW (columnas a norma 1)=6.713   bien condicionado
+               g_level   vs Re_Omega : separables 
+               g_level   vs M_tip    : separables 
+               Re_Omega  vs M_tip    : separables   corr(log,log)=+0.441610
+
+Xia2024      n= 45  mandos variados=['omega_rad_s', 'R_m']
+             rango a priori (cota) = 2   rango realizado = 2   COINCIDEN
+             valores singulares=[1.2298e+01 7.9638e-02 1.4295e-15]
+             cond sin normalizar=154.4   cond BKW (columnas a norma 1)=136.9   MAL CONDICIONADO (>30)
+               g_level   vs Re_Omega : separables   corr(log,log)=+0.999846
+               g_level   vs M_tip    : separables   corr(log,log)=+0.999983
+               Re_Omega  vs M_tip    : separables   corr(log,log)=+0.999931
+
+Zheng2024    n=  8  mandos variados=['omega_rad_s']
+             rango a priori (cota) = 1   rango realizado = 1   COINCIDEN
+             valores singulares=[4.6740e+00 2.0779e-16 2.4784e-32]
+             cond sin normalizar=1   cond BKW (columnas a norma 1)=1   bien condicionado
+               g_level   vs Re_Omega : DEGENERADO
+               g_level   vs M_tip    : DEGENERADO
+               Re_Omega  vs M_tip    : DEGENERADO  corr(log,log)=+1.000000
+
+
+==============================================================================
+2. Falsacion SIN MODELO: puntos con el mismo Re por caminos distintos
+==============================================================================
+Si Cp = f(Re), dos condiciones con el mismo Re deben dar el mismo Cp,
+sea cual sea la forma de f. No se ajusta nada.
+
+  dRe_pct          lo         hi     Cp_lo     Cp_hi   dCp_pct      M_lo      M_hi
+   1.0000 101kPa/44.3 50kPa/88.5    0.0893    0.0875   -2.0228    0.1290    0.2580
+   3.7776  50kPa/44.3 30kPa/76.7    0.0908    0.0894   -1.5675    0.1290    0.2234
+   5.4147  50kPa/62.6 30kPa/99.0    0.0902    0.0839   -7.0053    0.1824    0.2884
+
+  En todos los pares, la condicion de MAYOR Omega tiene MENOR Cp al mismo Re.
+  Cota de error de lectura: 1 px = 0.058 kW, muy por debajo de estas diferencias.
+
+==============================================================================
+3. Knudsen: la presion mas baja sigue en regimen continuo?
+==============================================================================
+   p=  10.0 kPa   camino libre medio=6.654e-07 m   Kn=4.436e-06
+   p=  30.0 kPa   camino libre medio=2.218e-07 m   Kn=1.479e-06
+   p=  50.0 kPa   camino libre medio=1.331e-07 m   Kn=8.872e-07
+   p= 101.0 kPa   camino libre medio=6.588e-08 m   Kn=4.392e-07
+
+  Kn < 1e-5 en todo el rango: continuo por cuatro ordenes de magnitud.
+  El enrarecimiento no puede explicar alpha != beta.
+
+==============================================================================
+4. Sensibilidad a la correccion de friccion de rodamientos
+==============================================================================
+Liu resta P_friccion = M_f * Omega con M_f = I*beta = 845.69*0.013 = 10.99 N m,
+constante, extrapolado de spin-down a omega < 1 rad/s. Si el par real fuese
+c veces mayor, la potencia de windage seria P + (1-c)*M_f*Omega.
+
+  peso de la friccion sobre el windage publicado: min=2.3%  max=34.6%
+
+  M_f x 0.00  (constante)                      n= 15 R2=0.936  alpha=-0.2740 beta=-0.0945  alpha-beta=-0.1795+-0.0277  t=-6.48 p=3.045e-05
+  M_f x 0.50  (constante)                      n= 15 R2=0.926  alpha=-0.1873 beta=-0.0569  alpha-beta=-0.1304+-0.0200  t=-6.52 p=2.869e-05
+  M_f x 1.00  (constante)                      n= 15 R2=0.690  alpha=-0.0877 beta=-0.0144  alpha-beta=-0.0733+-0.0203  t=-3.60 p=0.003624
+  M_f x 1.25  (constante)                      n= 15 R2=0.168  alpha=-0.0318 beta=+0.0092  alpha-beta=-0.0410+-0.0263  t=-1.56 p=0.1457
+  M_f x 1.50  (constante)                      n= 15 R2=0.282  alpha=+0.0292 beta=+0.0347  alpha-beta=-0.0055+-0.0357  t=-0.15 p=0.8797
+  M_f x 2.00  (constante)                      n= 15 R2=0.601  alpha=+0.1702 beta=+0.0929  alpha-beta=+0.0773+-0.0637  t=+1.21 p=0.2482
+  M_f x 3.00  (constante)                      n= 15 R2=0.655  alpha=+0.5918 beta=+0.2617  alpha-beta=+0.3301+-0.1806  t=+1.83 p=0.09247
+
+  error viscoso, x1.50 a Omega maxima          n= 15 R2=0.427  alpha=-0.0544 beta=+0.0156  alpha-beta=-0.0700+-0.0234  t=-2.99 p=0.01132
+  error viscoso, x2.00 a Omega maxima          n= 15 R2=0.503  alpha=-0.0178 beta=+0.0480  alpha-beta=-0.0658+-0.0284  t=-2.32 p=0.03909
+  error viscoso, x3.00 a Omega maxima          n= 15 R2=0.735  alpha=+0.0678 beta=+0.1214  alpha-beta=-0.0536+-0.0445  t=-1.20 p=0.2517
+
+==============================================================================
+5. Monte Carlo de la incertidumbre de re-digitalizacion
+==============================================================================
+  error uniforme +-0.06 kW: media=-0.0733  P(signo negativo)=1.0000  P(p<0.05)=0.9800  <- resolucion real (1 px)
+  error uniforme +-0.15 kW: media=-0.0722  P(signo negativo)=1.0000  P(p<0.05)=0.6122
+  error uniforme +-0.30 kW: media=-0.0695  P(signo negativo)=0.9237  P(p<0.05)=0.3524
+  error uniforme +-0.50 kW: media=-0.0640  P(signo negativo)=0.7832  P(p<0.05)=0.2306
+
+==============================================================================
+6. Test de permutacion, bootstrap estratificado y potencia
+==============================================================================
+  observado                                    n= 15 R2=0.690  alpha=-0.0877 beta=-0.0144  alpha-beta=-0.0733+-0.0203  t=-3.60 p=0.003624
+  permutacion (20k): P(|alpha-beta| >= |observado|) = 0.0250
+  bootstrap estratificado por p_Pa         (20k): IC95=[-0.1297, -0.0353]  P(>=0)=0.0001
+  bootstrap estratificado por omega_rad_s  (20k): IC95=[-0.0974, -0.0493]  P(>=0)=0.0001
+  potencia para detectar alpha-beta=-0.073 con n=15: 0.910
+
+==============================================================================
+7. Robustez a curvatura en f(Re)
+==============================================================================
+Si f no es una ley de potencia, Omega y rho muestrean tramos distintos de Re
+y alpha != beta podria ser espurio. Se anaden terminos en log(Re).
+
+  f(Re) polinomica de orden 1: coef. residual de log(Omega) = -0.0733+-0.0203  t=-3.60  p=0.003624   R2=0.690
+  f(Re) polinomica de orden 2: coef. residual de log(Omega) = -0.0774+-0.0206  t=-3.75  p=0.00323   R2=0.718
+  f(Re) polinomica de orden 3: coef. residual de log(Omega) = -0.0770+-0.0231  t=-3.33  p=0.007589   R2=0.718
+
+  El coeficiente de log(Omega) a Re controlado es el mismo objeto que
+  alpha-beta cuando f es una ley de potencia, pero no supone esa forma.
+
+==============================================================================
+8. Chequeo de consistencia en Vrancik1968 (el unico diseno de rango 3)
+==============================================================================
+  con efectos fijos de geometria, exponente de Mach        = -0.2070+-0.1173  t=-1.76 p=0.08644   (Re: -0.3212+-0.0351)   R2=0.894
+  con efectos fijos de geometria, exponente de g monomico  = -0.1002+-0.0578  t=-1.73 p=0.09175   (Re: -0.3249+-0.0345)   R2=0.894
+
+  M y g monomico en Vrancik: cond=8.4 -> separables en principio, pero mal condicionados.
+  Se reporta como chequeo de consistencia, NO como replica: asume exponente
+  comun entre geometrias y la identificacion viene de comparar sub-disenos.
+
+==============================================================================
+9. Semantica de 'nivel g': metadato de instalacion vs monomio
+==============================================================================
+La columna g_level es el nivel de gravedad de la CARGA UTIL declarado por la
+instalacion. El grupo adimensional que usa el analisis de rango es Omega^2 R/g,
+que todo rotor tiene. No son lo mismo.
+
+  Liu2024      g_level tabulado=[     200,     1000]   Omega^2 R/g = [     200,      999]
+  Vrancik1968  g_level tabulado=[       1,        1]   Omega^2 R/g = [     888,    14274]
+  Xia2024      g_level tabulado=[      10,     1540]   Omega^2 R/g = [      10,     1541]
+  Zheng2024    g_level tabulado=[       1,        1]   Omega^2 R/g = [     266,    19703]
+
+  Vrancik y Zheng, etiquetados 'a 1 g', muestrean el monomio MAS ALTO del corpus.
+  El paper debe declarar cual de los dos objetos es la hipotesis fisica.
+
+==============================================================================
+10. Exponentes por geometria y heterogeneidad (Q de Cochran)
+==============================================================================
+  Liu2024      Liu_CHIEF_model                n= 20  a=-0.018+-0.006  R2=0.321
+  Vrancik1968  Vrancik_8pole                  n=  6  a=-0.227+-0.070  R2=0.724
+  Vrancik1968  Vrancik_alternator_shrouded    n= 23  a=-0.325+-0.037  R2=0.785
+  Vrancik1968  Vrancik_cylindrical            n=  6  a=-0.327+-0.069  R2=0.850
+  Vrancik1968  Vrancik_cylindrical_in_stator  n=  6  a=-0.830+-0.156  R2=0.877
+  Xia2024      CHIEF_chamfer_arm              n=  5  a=+0.070+-0.074  R2=0.231
+  Xia2024      CHIEF_disc_arm                 n=  5  a=-0.019+-0.044  R2=0.058
+  Xia2024      CHIEF_non_chamfer_arm          n=  5  a=-0.111+-0.043  R2=0.684
+  Xia2024      CHIEF_original_arm             n= 17  a=-0.049+-0.043  R2=0.079
+  Xia2024      CHIEF_rounded_fillet_arm       n=  5  a=-0.053+-0.019  R2=0.723
+  Xia2024      ZJU400_enclosed_arm            n=  8  a=-0.303+-0.038  R2=0.912
+  Zheng2024    Zheng_scaled_model             n=  8  a=-0.128+-0.040  R2=0.630
+
+  exponente combinado por precision = -0.042
+  Q de Cochran = 178.7  gl=11  p=0   I^2=93.8%
+  Heterogeneidad extrema: el exponente agrupado no es un promedio con sentido.
+  (para comparar: exponente AGRUPADO sobre los 114 puntos = -0.615, R2=0.825)
+
+==============================================================================
+11. Ajuste agrupado frente a dejar-una-instalacion-fuera
+==============================================================================
+  ['Re_Omega']                                                      
+     R2 en muestra=0.825   LOGO rmse(log): Zheng2024=0.355  Liu2024=0.728  Xia2024=1.537  Vrancik1968=0.418   media=0.760
+  ['Re_Omega', 'M_tip']                                             
+     R2 en muestra=0.825   LOGO rmse(log): Zheng2024=0.382  Liu2024=0.735  Xia2024=1.534  Vrancik1968=0.446   media=0.774
+  ['Re_Omega', 'Pi_confinement', 'Pi_gap', 'Pi_aspect_axial', 'Pi_blockage']
+     R2 en muestra=0.866   LOGO rmse(log): Zheng2024=2.638  Liu2024=0.994  Xia2024=2.677  Vrancik1968=1.018   media=1.832
+  ['Re_Omega', 'M_tip', 'Pi_confinement', 'Pi_gap', 'Pi_aspect_axial', 'Pi_blockage']
+     R2 en muestra=0.871   LOGO rmse(log): Zheng2024=2.654  Liu2024=1.075  Xia2024=2.657  Vrancik1968=2.361   media=2.187
+
+==============================================================================
+12. El cribado es ciego a la respuesta (y sensible al diseno)
+==============================================================================
+Peticion de ChatGPT: comprobar que el criterio no depende de Cp, y que si
+depende del diseno realizado.
+
+  Liu2024      original: rango=2 k=   1.622   con Cp aleatorio: rango=2 k=   1.622 OK   con T perturbada: rango=3 k=  20.318 (cambia, como debe)
+  Vrancik1968  original: rango=3 k=   6.713   con Cp aleatorio: rango=3 k=   6.713 OK   con T perturbada: rango=3 k=   7.011 (cambia, como debe)
+  Xia2024      original: rango=2 k= 136.897   con Cp aleatorio: rango=2 k= 136.897 OK   con T perturbada: rango=3 k=3192.322 (cambia, como debe)
+  Zheng2024    original: rango=1 k=   1.000   con Cp aleatorio: rango=1 k=   1.000 OK   con T perturbada: rango=2 k=  14.653 (cambia, como debe)

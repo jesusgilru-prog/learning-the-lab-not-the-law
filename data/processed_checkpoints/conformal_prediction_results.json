@@ -1,0 +1,310 @@
+{
+  "alpha": 0.1,
+  "best_variant": "Normalized",
+  "variants": {
+    "Split": {
+      "global_coverage": 0.9178333333333333,
+      "mean_width": 0.7137938576347291,
+      "logo_min": 0.16666666666666666,
+      "passes_coverage": true,
+      "passes_logo": false,
+      "cp3_status": "PARTIAL"
+    },
+    "Mondrian": {
+      "global_coverage": 0.850351662404092,
+      "mean_width": 0.47162911050409756,
+      "logo_min": 0.8,
+      "passes_coverage": false,
+      "passes_logo": true,
+      "cp3_status": "PARTIAL"
+    },
+    "Normalized": {
+      "global_coverage": 0.9110833333333334,
+      "mean_width": 0.4728006155155568,
+      "logo_min": 0.8,
+      "passes_coverage": true,
+      "passes_logo": true,
+      "cp3_status": "PASS"
+    }
+  },
+  "logo_results": {
+    "split": {
+      "CHIEF_chamfer_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 0.34757374227169796,
+        "width_logspace": 0.6951474845433959
+      },
+      "CHIEF_disc_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 0.34757374227169796,
+        "width_logspace": 0.6951474845433959
+      },
+      "CHIEF_non_chamfer_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 0.34757374227169796,
+        "width_logspace": 0.6951474845433959
+      },
+      "CHIEF_original_arm": {
+        "coverage": 1.0,
+        "n_test": 17,
+        "q_hat": 0.3682066504289553,
+        "width_logspace": 0.7364133008579106
+      },
+      "CHIEF_rounded_fillet_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 0.34757374227169796,
+        "width_logspace": 0.6951474845433959
+      },
+      "Liu_CHIEF_model": {
+        "coverage": 1.0,
+        "n_test": 20,
+        "q_hat": 0.36829997189460545,
+        "width_logspace": 0.7365999437892109
+      },
+      "Vrancik_8pole": {
+        "coverage": 1.0,
+        "n_test": 6,
+        "q_hat": 0.3497801890007782,
+        "width_logspace": 0.6995603780015563
+      },
+      "Vrancik_alternator_shrouded": {
+        "coverage": 0.43478260869565216,
+        "n_test": 23,
+        "q_hat": 0.181086573656002,
+        "width_logspace": 0.362173147312004
+      },
+      "Vrancik_cylindrical": {
+        "coverage": 1.0,
+        "n_test": 6,
+        "q_hat": 0.3497801890007782,
+        "width_logspace": 0.6995603780015563
+      },
+      "Vrancik_cylindrical_in_stator": {
+        "coverage": 0.16666666666666666,
+        "n_test": 6,
+        "q_hat": 0.2589046183955302,
+        "width_logspace": 0.5178092367910604
+      },
+      "ZJU400_enclosed_arm": {
+        "coverage": 1.0,
+        "n_test": 8,
+        "q_hat": 0.34980677971919644,
+        "width_logspace": 0.6996135594383929
+      },
+      "Zheng_scaled_model": {
+        "coverage": 1.0,
+        "n_test": 8,
+        "q_hat": 0.34980677971919644,
+        "width_logspace": 0.6996135594383929
+      }
+    },
+    "mondrian": {
+      "CHIEF_chamfer_arm": {
+        "coverage": 0.8,
+        "width_logspace": 0.4464125731388098
+      },
+      "CHIEF_disc_arm": {
+        "coverage": 0.8,
+        "width_logspace": 0.19383112851696893
+      },
+      "CHIEF_non_chamfer_arm": {
+        "coverage": 0.8,
+        "width_logspace": 0.18566325992750699
+      },
+      "CHIEF_original_arm": {
+        "coverage": 0.9411764705882353,
+        "width_logspace": 0.3581682567413207
+      },
+      "CHIEF_rounded_fillet_arm": {
+        "coverage": 0.8,
+        "width_logspace": 0.05747333724358228
+      },
+      "Liu_CHIEF_model": {
+        "coverage": 0.9,
+        "width_logspace": 0.30019259358384665
+      },
+      "Vrancik_8pole": {
+        "coverage": 0.8333333333333334,
+        "width_logspace": 0.3025950653844318
+      },
+      "Vrancik_alternator_shrouded": {
+        "coverage": 0.9130434782608695,
+        "width_logspace": 1.5154305727457464
+      },
+      "Vrancik_cylindrical": {
+        "coverage": 0.8333333333333334,
+        "width_logspace": 0.4151452042353587
+      },
+      "Vrancik_cylindrical_in_stator": {
+        "coverage": 0.8333333333333334,
+        "width_logspace": 1.1277982687503
+      },
+      "ZJU400_enclosed_arm": {
+        "coverage": 0.875,
+        "width_logspace": 0.4037238869828439
+      },
+      "Zheng_scaled_model": {
+        "coverage": 0.875,
+        "width_logspace": 0.353115178798455
+      }
+    },
+    "normalized": {
+      "CHIEF_chamfer_arm": {
+        "coverage": 0.8,
+        "n_test": 5,
+        "q_hat": 1.852197097163695,
+        "width_logspace": 0.4279832417755994
+      },
+      "CHIEF_disc_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 1.8828257468677523,
+        "width_logspace": 0.21310087320871485
+      },
+      "CHIEF_non_chamfer_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 1.8828257468677523,
+        "width_logspace": 0.18903342837260537
+      },
+      "CHIEF_original_arm": {
+        "coverage": 0.8823529411764706,
+        "n_test": 17,
+        "q_hat": 1.8826710813390513,
+        "width_logspace": 0.3015706527063929
+      },
+      "CHIEF_rounded_fillet_arm": {
+        "coverage": 1.0,
+        "n_test": 5,
+        "q_hat": 1.8828257468677523,
+        "width_logspace": 0.08866441929770627
+      },
+      "Liu_CHIEF_model": {
+        "coverage": 0.9,
+        "n_test": 20,
+        "q_hat": 1.8827972846721732,
+        "width_logspace": 0.29712839379075473
+      },
+      "Vrancik_8pole": {
+        "coverage": 0.8333333333333334,
+        "n_test": 6,
+        "q_hat": 1.8826854168344833,
+        "width_logspace": 0.3000036105611105
+      },
+      "Vrancik_alternator_shrouded": {
+        "coverage": 0.9130434782608695,
+        "n_test": 23,
+        "q_hat": 1.8827618202991503,
+        "width_logspace": 1.3610290096537552
+      },
+      "Vrancik_cylindrical": {
+        "coverage": 1.0,
+        "n_test": 6,
+        "q_hat": 1.8980619580714935,
+        "width_logspace": 0.41884519551831195
+      },
+      "Vrancik_cylindrical_in_stator": {
+        "coverage": 1.0,
+        "n_test": 6,
+        "q_hat": 1.8980619580714935,
+        "width_logspace": 1.5216928957731217
+      },
+      "ZJU400_enclosed_arm": {
+        "coverage": 0.875,
+        "n_test": 8,
+        "q_hat": 1.8827116534959352,
+        "width_logspace": 0.36226429466940596
+      },
+      "Zheng_scaled_model": {
+        "coverage": 0.875,
+        "n_test": 8,
+        "q_hat": 1.8827116534959352,
+        "width_logspace": 0.2828160030550758
+      }
+    }
+  },
+  "chief1900_prediction": {
+    "R=2m (conservative)_PI90": {
+      "R_m": 2.0,
+      "Re_Omega": 39577836.4116095,
+      "Cp_pred": 0.006542604595291269,
+      "Cp_lower": 0.005626811868933039,
+      "Cp_upper": 0.007607447323175438,
+      "confidence_level": 0.9,
+      "half_width_logspace": 0.15079233609019135
+    },
+    "R=2m (conservative)_PI95": {
+      "R_m": 2.0,
+      "Re_Omega": 39577836.4116095,
+      "Cp_pred": 0.006542604595291269,
+      "Cp_lower": 0.005394183007683108,
+      "Cp_upper": 0.007935525144281707,
+      "confidence_level": 0.95,
+      "half_width_logspace": 0.19301419019544494
+    },
+    "R=3m (nominal)_PI90": {
+      "R_m": 3.0,
+      "Re_Omega": 89050131.92612137,
+      "Cp_pred": 0.006158982547878788,
+      "Cp_lower": 0.00529688682789992,
+      "Cp_upper": 0.007161388803942971,
+      "confidence_level": 0.9,
+      "half_width_logspace": 0.15079233609019135
+    },
+    "R=3m (nominal)_PI95": {
+      "R_m": 3.0,
+      "Re_Omega": 89050131.92612137,
+      "Cp_pred": 0.006158982547878788,
+      "Cp_lower": 0.005077898032886632,
+      "Cp_upper": 0.007470229961177791,
+      "confidence_level": 0.95,
+      "half_width_logspace": 0.19301419019544494
+    },
+    "R=4.5m (stretched)_PI90": {
+      "R_m": 4.5,
+      "Re_Omega": 200362796.83377308,
+      "Cp_pred": 0.005797853969713533,
+      "Cp_lower": 0.004986306761469861,
+      "Cp_upper": 0.00674148468238523,
+      "confidence_level": 0.9,
+      "half_width_logspace": 0.15079233609019135
+    },
+    "R=4.5m (stretched)_PI95": {
+      "R_m": 4.5,
+      "Re_Omega": 200362796.83377308,
+      "Cp_pred": 0.005797853969713533,
+      "Cp_lower": 0.004780158254858512,
+      "Cp_upper": 0.007032217107029221,
+      "confidence_level": 0.95,
+      "half_width_logspace": 0.19301419019544494
+    }
+  },
+  "chief1900_params": {
+    "omega_rad_s": 150.0,
+    "gap_m": 0.3,
+    "nu_m2s": 1.516e-05,
+    "geometry_proxy": "CHIEF_original_arm",
+    "variant_used": "normalized",
+    "q_hat": 1.882758603311164,
+    "sigma_chief": 0.08009116825969954
+  },
+  "cp3_criteria": {
+    "coverage_ge_090": {
+      "value": 0.9110833333333334,
+      "pass": true
+    },
+    "logo_min_ge_070": {
+      "value": 0.8,
+      "pass": true
+    },
+    "chief1900_reasonable": {
+      "pass": true
+    }
+  },
+  "cp3_status": "PASS",
+  "elapsed_seconds": 0.4
+}

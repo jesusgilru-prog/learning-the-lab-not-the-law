@@ -1,0 +1,264 @@
+{
+  "regressions": {
+    "log_Ci_vs_log_Pi_gap": {
+      "r2": 0.4077914411280794,
+      "intercept": -4.33776451367986,
+      "slope_Pi_gap": -0.6154485872244919,
+      "ci_intercept": [
+        -6.193101244612872,
+        -2.744578378099233
+      ],
+      "ci_slope_Pi_gap": [
+        -1.0302117764855205,
+        -0.25047379721926666
+      ]
+    },
+    "log_Ci_vs_log_Pi_gap_blockage": {
+      "r2": 0.7710304045763099,
+      "intercept": 1.2250695360905084,
+      "slope_Pi_gap": 0.41990100510391826,
+      "slope_Pi_blockage": 1.2103206186074733,
+      "ci_slope_Pi_gap": [
+        -0.49643386952043117,
+        1.4211477225494724
+      ],
+      "ci_slope_Pi_blockage": [
+        0.3647473247584546,
+        2.429453181690874
+      ]
+    },
+    "log_Ci_vs_all_Pi_geom": {
+      "r2": 0.8427089155664211,
+      "intercept": 981.8410684747485,
+      "slope_Pi_gap": -0.24783863811711626,
+      "ci_Pi_gap": [
+        -2.242279937745302,
+        3.5917723779100927
+      ],
+      "slope_Pi_blockage": 2180.155399009743,
+      "ci_Pi_blockage": [
+        -492.6861534440579,
+        5210.718002803672
+      ],
+      "slope_Pi_aspect_axial": -2179.146993390652,
+      "ci_Pi_aspect_axial": [
+        -5209.178947119895,
+        493.4597515329259
+      ],
+      "slope_Pi_confinement": -4370.448458930696,
+      "ci_Pi_confinement": [
+        -10346.902768554453,
+        872.3191196709487
+      ]
+    }
+  },
+  "geom_means": {
+    "CHIEF_chamfer_arm": {
+      "Pi_gap": 0.11111111111111112,
+      "Pi_blockage": 0.05729577951308231,
+      "Pi_aspect_axial": 0.11111111111111112,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.4116749288815093,
+      "source": "Xia2024",
+      "n_points": 5
+    },
+    "CHIEF_disc_arm": {
+      "Pi_gap": 0.11111111111111112,
+      "Pi_blockage": 0.011459155902616465,
+      "Pi_aspect_axial": 0.022222222222222223,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.4116749288815093,
+      "source": "Xia2024",
+      "n_points": 5
+    },
+    "CHIEF_non_chamfer_arm": {
+      "Pi_gap": 0.11111111111111112,
+      "Pi_blockage": 0.05729577951308231,
+      "Pi_aspect_axial": 0.11111111111111112,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.4116749288815093,
+      "source": "Xia2024",
+      "n_points": 5
+    },
+    "CHIEF_original_arm": {
+      "Pi_gap": 0.11113372405532171,
+      "Pi_blockage": 0.05729577951308232,
+      "Pi_aspect_axial": 0.11113372405532171,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.6485923851430299,
+      "source": "Xia2024",
+      "n_points": 17
+    },
+    "CHIEF_rounded_fillet_arm": {
+      "Pi_gap": 0.11111111111111112,
+      "Pi_blockage": 0.05729577951308231,
+      "Pi_aspect_axial": 0.11111111111111112,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.4116749288815093,
+      "source": "Xia2024",
+      "n_points": 5
+    },
+    "Liu_CHIEF_model": {
+      "Pi_gap": 0.14999999999999997,
+      "Pi_blockage": 0.09627520187033368,
+      "Pi_aspect_axial": 0.20000000000000004,
+      "Pi_confinement": 0.8695652173913044,
+      "M_tip": 0.21623276625426655,
+      "source": "Liu2024",
+      "n_points": 20
+    },
+    "Vrancik_8pole": {
+      "Pi_gap": 0.0028653295128939827,
+      "Pi_blockage": 0.9522012880983679,
+      "Pi_aspect_axial": 1.5042979942693409,
+      "Pi_confinement": 0.9971428571428572,
+      "M_tip": 0.202843587196493,
+      "source": "Vrancik1968",
+      "n_points": 6
+    },
+    "Vrancik_alternator_shrouded": {
+      "Pi_gap": 0.015384615384615384,
+      "Pi_blockage": 0.9285865194399721,
+      "Pi_aspect_axial": 1.503846153846154,
+      "Pi_confinement": 0.9848484848484848,
+      "M_tip": 0.22023168954280492,
+      "source": "Vrancik1968",
+      "n_points": 23
+    },
+    "Vrancik_cylindrical": {
+      "Pi_gap": 0.007194244604316546,
+      "Pi_blockage": 0.8126646277875961,
+      "Pi_aspect_axial": 1.2949640287769784,
+      "Pi_confinement": 0.9928571428571429,
+      "M_tip": 0.20197176662114993,
+      "source": "Vrancik1968",
+      "n_points": 6
+    },
+    "Vrancik_cylindrical_in_stator": {
+      "Pi_gap": 0.007194244604316546,
+      "Pi_blockage": 0.8126646277875961,
+      "Pi_aspect_axial": 1.2949640287769784,
+      "Pi_confinement": 0.9928571428571429,
+      "M_tip": 0.19299524366020995,
+      "source": "Vrancik1968",
+      "n_points": 6
+    },
+    "ZJU400_enclosed_arm": {
+      "Pi_gap": 0.1111111111111111,
+      "Pi_blockage": 0.05729577951308232,
+      "Pi_aspect_axial": 0.1111111111111111,
+      "Pi_confinement": 0.9,
+      "M_tip": 0.13711845752614665,
+      "source": "Xia2024",
+      "n_points": 8
+    },
+    "Zheng_scaled_model": {
+      "Pi_gap": 0.2765957446808511,
+      "Pi_blockage": 0.08311424805910089,
+      "Pi_aspect_axial": 0.21276595744680854,
+      "Pi_confinement": 0.7833333333333333,
+      "M_tip": 0.33222922444988884,
+      "source": "Zheng2024",
+      "n_points": 8
+    }
+  },
+  "prefactors": {
+    "CHIEF_chamfer_arm": {
+      "C": 0.019109607306998566,
+      "log_C": -3.957564070025415,
+      "ci_log_C": [
+        -4.7172956420510435,
+        -2.216053883114824
+      ]
+    },
+    "CHIEF_disc_arm": {
+      "C": 0.006736966536010389,
+      "log_C": -5.00014552421049,
+      "ci_log_C": [
+        -5.759877096236119,
+        -3.2586353372998995
+      ]
+    },
+    "CHIEF_non_chamfer_arm": {
+      "C": 0.02787289522744814,
+      "log_C": -3.5801005595881845,
+      "ci_log_C": [
+        -4.339832131613813,
+        -1.8385903726775932
+      ]
+    },
+    "CHIEF_original_arm": {
+      "C": 0.02409069724730042,
+      "log_C": -3.725929519341233,
+      "ci_log_C": [
+        -4.508983855888032,
+        -1.9309572499055734
+      ]
+    },
+    "CHIEF_rounded_fillet_arm": {
+      "C": 0.022007020744624333,
+      "log_C": -3.816393751777644,
+      "ci_log_C": [
+        -4.576125323803272,
+        -2.074883564867053
+      ]
+    },
+    "Liu_CHIEF_model": {
+      "C": 0.24613267934365535,
+      "log_C": -1.4018845415196224,
+      "ci_log_C": [
+        -2.027254397192933,
+        0.03163226144554158
+      ]
+    },
+    "Vrancik_8pole": {
+      "C": 0.505424889150157,
+      "log_C": -0.682355838801834,
+      "ci_log_C": [
+        -1.2423130007555754,
+        0.6012173832191252
+      ]
+    },
+    "Vrancik_alternator_shrouded": {
+      "C": 0.20096582905135887,
+      "log_C": -1.6046203900951093,
+      "ci_log_C": [
+        -2.2095469936625816,
+        -0.21796504860768318
+      ]
+    },
+    "Vrancik_cylindrical": {
+      "C": 0.295280818674903,
+      "log_C": -1.2198284477266357,
+      "ci_log_C": [
+        -1.7794093527505421,
+        0.0628822916750265
+      ]
+    },
+    "Vrancik_cylindrical_in_stator": {
+      "C": 0.4528279706203598,
+      "log_C": -0.7922429814295446,
+      "ci_log_C": [
+        -1.348105323571037,
+        0.4819438063833671
+      ]
+    },
+    "ZJU400_enclosed_arm": {
+      "C": 0.1154982022603211,
+      "log_C": -2.158500313987127,
+      "ci_log_C": [
+        -2.87417066812162,
+        -0.5179903521961924
+      ]
+    },
+    "Zheng_scaled_model": {
+      "C": 0.16611729812845213,
+      "log_C": -1.795061124928954,
+      "ci_log_C": [
+        -2.4137683889934003,
+        -0.3768167834295228
+      ]
+    }
+  },
+  "interpretation": "Los prefactores son facility-specific sin descomposici\u00f3n param\u00e9trica simple identificable (R\u00b2(C_i ~ Pi_gap) = 0.408). Esto refleja la diversidad geom\u00e9trica de las 12 configuraciones y sugiere que las variables Pi_geom medias por geometr\u00eda no capturan suficiente variabilidad para reemplazar los prefactores libres."
+}

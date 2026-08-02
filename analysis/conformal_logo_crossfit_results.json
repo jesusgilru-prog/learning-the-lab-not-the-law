@@ -1,0 +1,47 @@
+{
+  "per_geom_coverage": {
+    "CHIEF_chamfer_arm": 0.0,
+    "CHIEF_disc_arm": 0.0,
+    "CHIEF_non_chamfer_arm": 0.0,
+    "CHIEF_original_arm": 0.0,
+    "CHIEF_rounded_fillet_arm": 0.0,
+    "Liu_CHIEF_model": 0.0,
+    "Vrancik_8pole": 0.0,
+    "Vrancik_alternator_shrouded": 0.0,
+    "Vrancik_cylindrical": 0.0,
+    "Vrancik_cylindrical_in_stator": 0.0,
+    "ZJU400_enclosed_arm": 0.125,
+    "Zheng_scaled_model": 0.0
+  },
+  "per_geom_n": {
+    "CHIEF_chamfer_arm": 5,
+    "CHIEF_disc_arm": 5,
+    "CHIEF_non_chamfer_arm": 5,
+    "CHIEF_original_arm": 17,
+    "CHIEF_rounded_fillet_arm": 5,
+    "Liu_CHIEF_model": 20,
+    "Vrancik_8pole": 6,
+    "Vrancik_alternator_shrouded": 23,
+    "Vrancik_cylindrical": 6,
+    "Vrancik_cylindrical_in_stator": 6,
+    "ZJU400_enclosed_arm": 8,
+    "Zheng_scaled_model": 8
+  },
+  "q_hats": {
+    "CHIEF_chamfer_arm": 1.8663168359617108,
+    "CHIEF_disc_arm": 1.8877886461771005,
+    "CHIEF_non_chamfer_arm": 1.8784804606778467,
+    "CHIEF_original_arm": 1.885285611852058,
+    "CHIEF_rounded_fillet_arm": 1.8759557330944021,
+    "Liu_CHIEF_model": 1.857197424351071,
+    "Vrancik_8pole": 1.8794072250313805,
+    "Vrancik_alternator_shrouded": 1.8503329101228243,
+    "Vrancik_cylindrical": 1.8927628210384986,
+    "Vrancik_cylindrical_in_stator": 1.896327411723617,
+    "ZJU400_enclosed_arm": 1.8782093135544145,
+    "Zheng_scaled_model": 1.8771918315292844
+  },
+  "logo_min": 0.0,
+  "logo_min_geometry": "CHIEF_chamfer_arm",
+  "fallback_rule": "mean(log_C) and mean(sigma) over training geometries, same convention as Table 6"
+}

@@ -1,0 +1,51 @@
+
+==============================================================================
+0. Que se publico realmente
+==============================================================================
+  split      : 12 grupos -> GEOMETRIAS;  minimo=0.1667 en 'Vrancik_cylindrical_in_stator'
+  mondrian   : 12 grupos -> GEOMETRIAS;  minimo=0.8000 en 'CHIEF_chamfer_arm'
+  normalized : 12 grupos -> GEOMETRIAS;  minimo=0.8000 en 'CHIEF_chamfer_arm'
+
+  Las 12 claves son geometrias. El manuscrito lo describe como
+  'una instalacion no vista', que no es lo que se calculo.
+
+==============================================================================
+1. LOGO por GEOMETRIA (lo publicado, reproducido)
+==============================================================================
+  split      minimo=0.1667
+  normalized minimo=0.8000
+
+==============================================================================
+2. LOGO por INSTALACION (lo que dice el manuscrito)
+==============================================================================
+  --- split (sin condicionar a geometria: bien definido) ---
+     Liu2024      n= 20  cobertura=1.0000
+     Vrancik1968  n= 41  cobertura=0.4390
+     Xia2024      n= 45  cobertura=1.0000
+     Zheng2024    n=  8  cobertura=1.0000
+     MINIMO = 0.4390
+
+  --- normalized (sigma por geometria) ---
+  Problema: al dejar fuera una instalacion, SUS geometrias no aparecen en
+  calibracion, asi que sigma no esta definido para el test. Se necesita una
+  regla de respaldo, y el numero depende de cual se elija:
+     con sigma global                       minimo=0.7073   (Liu2024=1.000, Vrancik1968=0.707, Xia2024=1.000, Zheng2024=1.000)
+     con mediana de sigmas de calibracion   minimo=0.4634   (Liu2024=0.950, Vrancik1968=0.463, Xia2024=0.911, Zheng2024=0.875)
+
+  --- mondrian (bins por geometria) ---
+  NO ESTA DEFINIDO dejando fuera una instalacion: sus geometrias no tienen
+  ningun punto de calibracion en su propio bin. Cualquier numero que se
+  reporte aqui exige declarar la regla de respaldo.
+
+==============================================================================
+3. Resumen para el manuscrito
+==============================================================================
+  LOGO-min por geometria, split      : 0.167   <- es el 0.167 que cita el paper
+  LOGO-min por geometria, normalized : 0.800
+  LOGO-min por INSTALACION, split    : 0.439
+
+  Recomendacion: reportar los dos, decir explicitamente que el criterio de
+  aceptacion se evalua por geometria, y que las variantes condicionadas a
+  geometria no son evaluables dejando fuera una instalacion entera --- que es
+  en si mismo un resultado: la normalizacion por geometria no puede proteger
+  contra una instalacion nueva, porque sus geometrias tambien son nuevas.

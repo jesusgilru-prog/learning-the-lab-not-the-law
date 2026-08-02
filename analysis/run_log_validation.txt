@@ -1,0 +1,102 @@
+
+==============================================================================
+A. La atribucion la decide el prior del algoritmo, no los datos
+==============================================================================
+verdad: theta_Re=-0.030  theta_M=-0.120  theta_Ng=+0.000   (la gravedad NO interviene)
+
+diseno degenerado (R y T fijos): n=20  Stage 0 -> rango=2/3  kappa=1.62  corr max=1.000000
+structure          sse          bic                     coefs
+     Re+M    0.0083821     -146.561         [-0.0372 -0.1365]
+    Re+Ng    0.0083821     -146.561         [-0.0372 -0.0683]
+  Re+M+Ng    0.0083821     -143.565 [-0.0372 -0.0273 -0.0546]
+        M    0.0280251     -125.416                 [-0.1737]
+       Ng    0.0280251     -125.416                 [-0.0868]
+     M+Ng    0.0280251     -122.421         [-0.0347 -0.0695]
+       Re    0.0354211     -120.732                 [-0.0511]
+  -> mejor BIC: Re+M;  estructuras empatadas a 1e-6: ['Re+M', 'Re+Ng']
+
+diseno + 2 temperaturas de gas: n=40  Stage 0 -> rango=3/3  kappa=12.2  corr max=0.985085
+structure          sse          bic                     coefs
+     Re+M    0.0109478     -317.073         [-0.0276 -0.1231]
+  Re+M+Ng    0.0109072     -313.533 [-0.0275 -0.1435  0.0104]
+    Re+Ng    0.0128589     -310.637         [-0.0291 -0.0605]
+        M     0.033081     -276.529                 [-0.1527]
+     M+Ng    0.0323616      -273.72         [-0.2369  0.0434]
+       Ng    0.0378935     -271.096                 [-0.0751]
+       Re    0.0555558     -255.792                  [-0.041]
+  -> mejor BIC: Re+M;  estructuras empatadas a 1e-6: ['Re+M']
+
+En el diseno degenerado, log N_g = 2 log M + cte, asi que la ley
+'C_p depende de la gravedad con exponente theta_M/2' ajusta EXACTAMENTE
+igual de bien que la verdadera. Ningun criterio basado en bondad de
+ajuste puede separarlas: la eleccion la hace el desempate del buscador.
+
+==============================================================================
+B. El condicionamiento predice el error de recuperacion
+==============================================================================
+400 disenos de rango completo, ruido sigma=0.02
+
+          n  kappa_med  err_M_med  err_M_p90
+bin                                         
+k<3     126      1.764    0.01072    0.02515
+3-10    147      6.143    0.02913    0.06821
+10-32    56      15.78    0.06306     0.1833
+32-100   33      52.91      0.185     0.5974
+>100     38      214.4     0.9691      3.239
+
+  Spearman(kappa, |error en theta_M|) = +0.706  p=1.15e-61
+  error mediano con kappa<30: 0.0202   con kappa>30: 0.3359   (la verdad es |theta_M|=0.120)
+
+==============================================================================
+C. Stage 0 como filtro, frente a la heuristica de correlacion
+==============================================================================
+Recuperable := |theta_M estimado - theta_M real| < |theta_M|/2,
+es decir, el exponente se recupera con menos de un 50% de error.
+Stage 0 dice SI si rango completo y kappa <= 30.
+Heuristica dice SI si max |corr(log Pi_i, log Pi_j)| < 0.99.
+
+3000 ensayos.  Recuperables: 0.668
+
+  Stage 0 (rango + kappa<=30)        TP= 1876 FP=  355 FN=  127 TN=  642   precision=0.841  sensibilidad=0.937  acierto=0.839
+                                     tasa de falsa promesa (dice SI y no se recupera) = 0.159
+  heuristica (|corr| < 0.99)         TP= 1736 FP=  229 FN=  267 TN=  768   precision=0.883  sensibilidad=0.867  acierto=0.835
+                                     tasa de falsa promesa (dice SI y no se recupera) = 0.117
+
+  Casos donde discrepan:
+    Stage 0 dice SI y la heuristica NO: n=266  de ellos recuperables=0.526
+    Stage 0 dice NO y la heuristica SI: n=0  de ellos recuperables=nan
+
+  RESULTADO HONESTO: con DOS grupos las dos pantallas son el MISMO
+  estadistico. Para dos columnas centradas y normalizadas,
+      kappa = sqrt((1+|r|)/(1-|r|)),
+  de modo que |corr|<0.99 equivale exactamente a kappa<14.1. La unica
+  diferencia observada es el umbral, no el criterio. La comparacion
+  relevante esta en el experimento D, con tres grupos.
+  comprobacion numerica: max |kappa - sqrt((1+r)/(1-r))| = 7.128e-07
+
+  Barrido del umbral de kappa:
+    kappa<=   3: precision=0.950  sensibilidad=0.360  acierto=0.560
+    kappa<=  10: precision=0.894  sensibilidad=0.812  acierto=0.810
+    kappa<=  20: precision=0.865  sensibilidad=0.905  acierto=0.842
+    kappa<=  30: precision=0.841  sensibilidad=0.937  acierto=0.839
+    kappa<=  50: precision=0.808  sensibilidad=0.962  acierto=0.822
+    kappa<= 100: precision=0.766  sensibilidad=0.985  acierto=0.789
+    kappa<= 300: precision=0.713  sensibilidad=0.996  acierto=0.730
+
+==============================================================================
+D. Tres grupos: donde la correlacion por pares se queda ciega
+==============================================================================
+Con m>=3 un grupo puede ser casi combinacion lineal de los otros dos
+sin que NINGUNA correlacion por pares sea alta. La heuristica por pares
+no puede verlo; el condicionamiento conjunto si.
+
+4000 ensayos con los tres grupos. Recuperables: 0.231
+
+  Stage 0 (rango + kappa<=30)        TP=  493 FP=  192 FN=  430 TN= 2885   precision=0.720  sensibilidad=0.534  acierto=0.845
+  heuristica por pares (|corr|<0.99) TP=  545 FP=  904 FN=  378 TN= 2173   precision=0.376  sensibilidad=0.590  acierto=0.679
+
+  Zona ciega de la heuristica (todas las correlaciones por pares
+  por debajo de 0.99 pero kappa conjunto > 30): n=929 (23.2% de los ensayos)
+    de esos, recuperables = 0.158  (la heuristica los da todos por buenos)
+    correlacion maxima por pares en esa zona: mediana=0.9693  max=0.9900
+    kappa conjunto en esa zona: mediana=305.6  max=2.32e+04

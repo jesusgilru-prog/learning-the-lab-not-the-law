@@ -1,0 +1,19 @@
+{
+  "K": 200,
+  "q_true": -0.0745116509833754,
+  "verdict_counts": {
+    "no-regime-detected": 174,
+    "facility-artifact": 13,
+    "report-with-disclaimer": 6,
+    "ambiguous": 6,
+    "report-as-physics": 1
+  },
+  "false_positive_rate": 0.065,
+  "bf_null_mean": 16733.319258532483,
+  "bf_null_median": 0.11405838200707373,
+  "bf_null_max": 3297808.524290255,
+  "frac_exceed_real_fitted_bf": 0.005,
+  "frac_exceed_real_peak_bf": 0.0,
+  "real_bf_fitted": 580000.0,
+  "real_bf_peak": 6200000.0
+}

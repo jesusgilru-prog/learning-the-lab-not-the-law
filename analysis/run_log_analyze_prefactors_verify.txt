@@ -1,0 +1,49 @@
+============================================================
+Análisis post-hoc: Prefactores C_i vs Pi geométricos
+============================================================
+
+12 geometrías con prefactores C_i
+
+Medias por geometría:
+Geometry                             log(Ci)     Pi_gap   Pi_block     Pi_asp    Pi_conf    M_tip src
+  CHIEF_chamfer_arm                   -3.958     0.1111     0.0573     0.1111     0.9000   0.4117 Xia2024
+  CHIEF_disc_arm                      -5.000     0.1111     0.0115     0.0222     0.9000   0.4117 Xia2024
+  CHIEF_non_chamfer_arm               -3.580     0.1111     0.0573     0.1111     0.9000   0.4117 Xia2024
+  CHIEF_original_arm                  -3.726     0.1111     0.0573     0.1111     0.9000   0.6486 Xia2024
+  CHIEF_rounded_fillet_arm            -3.816     0.1111     0.0573     0.1111     0.9000   0.4117 Xia2024
+  Liu_CHIEF_model                     -1.402     0.1500     0.0963     0.2000     0.8696   0.2162 Liu2024
+  Vrancik_8pole                       -0.682     0.0029     0.9522     1.5043     0.9971   0.2028 Vrancik1968
+  Vrancik_alternator_shrouded         -1.605     0.0154     0.9286     1.5038     0.9848   0.2202 Vrancik1968
+  Vrancik_cylindrical                 -1.220     0.0072     0.8127     1.2950     0.9929   0.2020 Vrancik1968
+  Vrancik_cylindrical_in_stator       -0.792     0.0072     0.8127     1.2950     0.9929   0.1930 Vrancik1968
+  ZJU400_enclosed_arm                 -2.159     0.1111     0.0573     0.1111     0.9000   0.1371 Xia2024
+  Zheng_scaled_model                  -1.795     0.2766     0.0831     0.2128     0.7833   0.3322 Zheng2024
+
+Pi groups disponibles para regresión: ['Pi_gap', 'Pi_blockage', 'Pi_aspect_axial', 'Pi_confinement']
+
+Modelo 1: log(C_i) ~ log(Pi_gap)
+  R² = 0.4078
+  slope = -0.6154 CI [-1.0302, -0.2505]
+
+Modelo 2: log(C_i) ~ log(Pi_gap) + log(Pi_blockage)
+  R² = 0.7710
+  slope_gap = 0.4199, slope_block = 1.2103
+
+Modelo 3: log(C_i) ~ todos los Pi geom
+  R² = 0.8427
+  Pi_gap: -0.2478 CI [-2.2423, 3.5918]
+  Pi_blockage: 2180.1554 CI [-492.6862, 5210.7180]
+  Pi_aspect_axial: -2179.1470 CI [-5209.1789, 493.4598]
+  Pi_confinement: -4370.4485 CI [-10346.9028, 872.3191]
+
+--- R²(C_i ~ Pi_gap) = 0.408 <= 0.5 → no se ajusta modelo full ---
+
+============================================================
+INTERPRETACIÓN
+============================================================
+Los prefactores son facility-specific sin descomposición paramétrica simple identificable (R²(C_i ~ Pi_gap) = 0.408). Esto refleja la diversidad geométrica de las 12 configuraciones y sugiere que las variables Pi_geom medias por geometría no capturan suficiente variabilidad para reemplazar los prefactores libres.
+
+Resultados: data/processed/prefactor_analysis.json
+Figura: data/processed/figures/fig5_prefactors_vs_pi_geom.png
+
+Done.

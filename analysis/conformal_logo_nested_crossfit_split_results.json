@@ -1,0 +1,49 @@
+{
+  "variant": "split",
+  "per_geom_coverage": {
+    "CHIEF_chamfer_arm": 0.0,
+    "CHIEF_disc_arm": 0.0,
+    "CHIEF_non_chamfer_arm": 0.0,
+    "CHIEF_original_arm": 0.0,
+    "CHIEF_rounded_fillet_arm": 0.0,
+    "Liu_CHIEF_model": 0.0,
+    "Vrancik_8pole": 0.0,
+    "Vrancik_alternator_shrouded": 0.0,
+    "Vrancik_cylindrical": 0.0,
+    "Vrancik_cylindrical_in_stator": 0.0,
+    "ZJU400_enclosed_arm": 0.75,
+    "Zheng_scaled_model": 0.0
+  },
+  "per_geom_n": {
+    "CHIEF_chamfer_arm": 5,
+    "CHIEF_disc_arm": 5,
+    "CHIEF_non_chamfer_arm": 5,
+    "CHIEF_original_arm": 17,
+    "CHIEF_rounded_fillet_arm": 5,
+    "Liu_CHIEF_model": 20,
+    "Vrancik_8pole": 6,
+    "Vrancik_alternator_shrouded": 23,
+    "Vrancik_cylindrical": 6,
+    "Vrancik_cylindrical_in_stator": 6,
+    "ZJU400_enclosed_arm": 8,
+    "Zheng_scaled_model": 8
+  },
+  "q_hats": {
+    "CHIEF_chamfer_arm": 0.38029914715381263,
+    "CHIEF_disc_arm": 0.3894605117146096,
+    "CHIEF_non_chamfer_arm": 0.406288338069566,
+    "CHIEF_original_arm": 0.43597657015122926,
+    "CHIEF_rounded_fillet_arm": 0.414812773790927,
+    "Liu_CHIEF_model": 0.4097540015726657,
+    "Vrancik_8pole": 0.4166480724602459,
+    "Vrancik_alternator_shrouded": 0.32220852720571325,
+    "Vrancik_cylindrical": 0.41245108860642443,
+    "Vrancik_cylindrical_in_stator": 0.3175591031355389,
+    "ZJU400_enclosed_arm": 0.42937759186849217,
+    "Zheng_scaled_model": 0.40701616238828064
+  },
+  "logo_min": 0.0,
+  "logo_min_geometry": "CHIEF_chamfer_arm",
+  "weighted_mean_coverage": 0.05263157894736842,
+  "n_splits_inner": 200
+}
