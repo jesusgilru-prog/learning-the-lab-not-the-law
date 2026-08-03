@@ -1,5 +1,7 @@
 # Learning the Lab, Not the Law — reproducibility repository
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21776087.svg)](https://doi.org/10.5281/zenodo.21776087)
+
 Code and data for the paper *"Learning the Lab, Not the Law: A Verdict-Based
 Audit Protocol for Structure-Level Domain Confounding in Symbolic Scientific
 Discovery"* (submitted to *Machine Learning and Knowledge Extraction*, MDPI).
