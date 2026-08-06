@@ -4,7 +4,7 @@
 
 Code and data for the paper *"Learning the Lab, Not the Law: A Verdict-Based
 Audit Protocol for Structure-Level Domain Confounding in Symbolic Scientific
-Discovery"* (submitted to *Machine Learning and Knowledge Extraction*, MDPI).
+Discovery"* (submitted to *Algorithms*, MDPI).
 
 This repository contains the dataset, the audit implementation (Algorithms 1
 and 2 in the paper), and the scripts that regenerate every number and figure
@@ -17,7 +17,34 @@ reported in the paper and its supplement.
   `data_origin` and `error_pct` provenance fields — see Table A1 in the
   paper's appendix for source-level licensing) plus two auxiliary
   hand-digitized CSVs used in a spin-down-friction cross-check
-  (`liu_fig6_spindown.csv`, `liu_fig7a_redigitized.csv`).
+  (`liu_fig6_spindown.csv`, `liu_fig7a_redigitized.csv`), and
+  `data/processed_checkpoints/` — intermediate results consumed by the
+  `analysis/` scripts:
+  - `model_comparison_table.csv` — the source of Table 6 (the
+    leave-one-facility-out baseline comparison: Class-SR, the global
+    power law, the classical correlations, IRM, GroupDRO) and of the
+    IRM/GroupDRO rows referenced in Table 7's discussion. Produced by
+    `scripts/remediation_experiments.py`'s Experiment 5. **Note on a
+    metric that looks similar but is not the same:** `class_sr_results.json`
+    in this same folder also has an `r2_loso_cv` field (0.021) that is
+    *not* the Table 6 number (−1.001). It is a different, internal
+    diagnostic computed by `sr_engine/class_sr.py`'s own
+    `class_sr_fit()`: a **leave-one-geometry-out** (12 folds) check that
+    substitutes the mean of the training geometries' intercepts for the
+    held-out geometry. Table 6 instead evaluates
+    **leave-one-facility-out** (4 folds): since every geometry belongs
+    to exactly one facility, holding out a facility means every
+    held-out row's geometry is entirely unseen, so no intercept proxy
+    is available — see `analysis/verify_table6_class_sr_loso_facility.py`
+    below.
+  - `threshold_sweep_bf.csv` — the full 37-point Bayes-factor threshold
+    sweep behind Table 7 (the manuscript table shows selected values).
+    Also produced by `scripts/remediation_experiments.py`.
+  - `class_sr_results.json`, `prefactor_analysis.json`,
+    `conformal_prediction_results.json`, `cross_rotor_dataset_v3.csv`/
+    `.parquet` — other intermediate checkpoints read by specific
+    `analysis/` scripts (see their own headers for which one uses
+    which).
 - `sr_engine/` — the audit engine: Buckingham-Pi dimensional analysis
   (`buckingham_pi.py`), the class-SR fitting procedure (`class_sr.py`),
   the conformal-prediction implementations (split/Mondrian/normalized,
@@ -27,7 +54,18 @@ reported in the paper and its supplement.
   `honesty_tests/`. This is the implementation of Algorithms 1–2.
 - `scripts/` — top-level scripts referenced by name in the paper:
   - `remediation_experiments.py` — the S1–S6 structured-form discriminant
-    battery (Tests 1–4) and the specificity/power analysis.
+    battery (Tests 1–4), the specificity/power analysis, the IRM/GroupDRO
+    domain-generalization baselines, and the writer of
+    `model_comparison_table.csv` / `threshold_sweep_bf.csv` above. Note:
+    this script still has the path constants from the original research
+    repository (`data/processed/cross_rotor_dataset_v3.parquet`,
+    `results/`) rather than the relative paths used elsewhere in this
+    package, because it runs several long, seeded (`SEED=42`) experiments
+    together and re-running it fresh risks silently diverging numbers
+    already cited elsewhere in the paper if the environment differs even
+    slightly; the CSVs it produced are archived above instead of being
+    regenerated on clone. If you need to re-run it, point `DATASET` at
+    `../data/cross_rotor_dataset.csv` and adjust `RESULTS_DIR`.
   - `run_conformal_prediction.py` — the original (leaky) LOGO conformal
     run; kept for transparency about the leak described in the paper's
     §5.9, superseded by the nested cross-fit scripts below.
@@ -48,6 +86,21 @@ reported in the paper and its supplement.
     re-evaluation (Table 11).
   - `s5_null_calibration_real_support.py` — the support-matched null
     calibration for the S5 finding (§5.7(iv)).
+  - `verify_table6_class_sr_loso_facility.py` — an independent
+    from-scratch re-implementation of the Table 6 leave-one-facility-out
+    evaluation, written to check `model_comparison_table.csv`'s Class-SR
+    row against the same profiled-MLE fitting machinery
+    (`sr_engine/class_sr.py`) used everywhere else in this repository.
+    Honest result (`table6_class_sr_loso_facility_result.json`): it
+    reproduces the same qualitative finding (a strongly negative
+    held-out R², around −4.4 with a zero-intercept assumption for the
+    unseen facility, versus the published −1.001) but does not hit the
+    published figure to the digit — the exact historical fitting
+    procedure behind `model_comparison_table.csv`'s Class-SR row was not
+    preserved as a standalone script (see
+    `results/REMEDIATION_RESULTS.md`'s original note, "from prior
+    computation," in the source research repository). This is flagged
+    here rather than hidden.
   - `stage0_validation.py`, `design_identifiability_v2.py`,
     `pooled_rank_check.py`, `ddp_rank_analysis.py` — the Stage-0
     design-identifiability screen and its synthetic validation
