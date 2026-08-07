@@ -1,0 +1,6 @@
+delta_q,K,power,power_CI95_lo,power_CI95_hi,confound_type,verdict_counts
+0.0,100,0.13,0.07107304618542953,0.21204067708744978,structural_exponent_shift,"{'no-regime-detected': 87, 'facility-artifact': 7, 'ambiguous': 6}"
+0.02,100,0.17,0.10226491003552825,0.25817541063215865,structural_exponent_shift,"{'ambiguous': 6, 'report-with-disclaimer': 2, 'no-regime-detected': 83, 'facility-artifact': 9}"
+0.05,100,0.16,0.09431028997394623,0.24678759741086234,structural_exponent_shift,"{'no-regime-detected': 84, 'ambiguous': 15, 'facility-artifact': 1}"
+0.1,100,0.3,0.21240642048953662,0.3998146761798041,structural_exponent_shift,"{'no-regime-detected': 70, 'ambiguous': 27, 'facility-artifact': 3}"
+0.2,100,0.7,0.6001853238201958,0.7875935795104634,structural_exponent_shift,"{'ambiguous': 70, 'no-regime-detected': 30}"

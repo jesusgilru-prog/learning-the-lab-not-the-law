@@ -7,8 +7,11 @@ Audit Protocol for Structure-Level Domain Confounding in Symbolic Scientific
 Discovery"* (submitted to *Algorithms*, MDPI).
 
 This repository contains the dataset, the audit implementation (Algorithms 1
-and 2 in the paper), and the scripts that regenerate every number and figure
-reported in the paper and its supplement.
+and 2 in the paper), and the scripts that regenerate essentially every number
+and figure reported in the paper and its supplement. Run `./run_all.sh` to
+regenerate the three Supplement S4/S6 outputs in one shot; see "Reproducing a
+specific number or figure" below for everything else, and the one disclosed
+exception (a single archived Table 6 value) in that same section.
 
 ## Contents
 
@@ -76,6 +79,22 @@ reported in the paper and its supplement.
   - `compute_pi_groups.py` — derives the four candidate dimensionless
     groups (Π_gap, Π_blockage, Π_aspect,axial, Π_confinement) from the
     raw geometry columns in `data/cross_rotor_dataset.csv`.
+  - `facility_mape_rmse.py` — per-facility MAPE/RMSE in original $C_p$
+    units for the baseline models (Supplement S4). Run via `./run_all.sh`
+    or directly; verified to reproduce the supplement's cited figures
+    exactly (e.g. Class-SR: 4.8% MAPE on Zheng2024, 22.5% on Vrancik1968).
+  - `naive_sr_replication.py` — off-the-shelf, unconstrained symbolic
+    regression (via `gplearn`, no hand-picked candidate family) checking
+    whether a generic SR search independently rediscovers the S5
+    Mach-conditioned structure (Supplement S6). Requires
+    `pip install gplearn`. Verified: converges to the simple one-term fit
+    with no Mach dependence, exactly as the supplement reports.
+  - `structural_confound_power.py` — synthetic detection-power sweep for
+    an injected *structural* (Reynolds-exponent) confound, as opposed to
+    the prefactor-offset confound already in the main text (Supplement
+    S6). Requires `remediation_experiments.py` in the same folder
+    (imported for `run_framework_verdict`/`SEED`, not executed). Verified
+    to reproduce every row of the supplement's power table exactly.
 - `analysis/` — the verification scripts written during the paper's
   external-review cycle, each independently re-deriving one specific
   reported number, plus their raw output (`*_results.json`,
@@ -113,6 +132,9 @@ reported in the paper and its supplement.
     supporting data-provenance and cross-checking scripts.
 - `supplement.pdf` — the paper's supplementary material (Sections S1–S7
   referenced throughout the main text).
+- `run_all.sh` — regenerates the three Supplement S4/S6 outputs
+  (`facility_mape_rmse.py`, `structural_confound_power.py`,
+  `naive_sr_replication.py`) in one command.
 
 ## Reproducing a specific number or figure
 
@@ -121,11 +143,25 @@ Every script is self-contained (`python <script>.py`) and writes a
 these exact filenames next to the number they produced. Start from
 `sr_engine/` for the core audit protocol (Algorithms 1–2), or from
 `analysis/` for any specific verification re-run mentioned in a table or
-figure caption.
+figure caption. `./run_all.sh` runs the three scripts behind Supplement
+S4 and S6 (`facility_mape_rmse.py`, `naive_sr_replication.py`,
+`structural_confound_power.py`) in one command.
+
+**The one disclosed exception:** Table 6's Class-SR leave-one-facility-out
+value ($-1.001$) is archived in `data/processed_checkpoints/
+model_comparison_table.csv` from an earlier computation whose exact
+script was not preserved (see that file's entry above, and
+`analysis/verify_table6_class_sr_loso_facility.py` for an independent
+re-implementation that corroborates the finding qualitatively — a
+strongly negative held-out R² — without hitting the published digit).
+Every other number in the paper and supplement is reproducible from a
+script in this repository.
 
 ## Requirements
 
-Python 3.10+, `numpy`, `scipy`, `pandas`, `matplotlib`, `scikit-learn`.
+Python 3.10+, `numpy`, `scipy`, `pandas`, `pyarrow`, `matplotlib`,
+`scikit-learn`. `naive_sr_replication.py` additionally needs `gplearn`
+(`pip install gplearn`).
 
 ## Data licensing
 

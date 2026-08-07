@@ -9,5 +9,3 @@ Vrancik_1968_corr,2.5867299147717,2.3863521529756384,-2.543724150946948,-0.94316
 Daily_Nece_1960,2.927943694149408,2.7189666634231675,-3.5402856660882547,-0.9936263106526502,-3.5402856660882547,0,"C_M=0.0622*(s/R)^0.1*Re^-0.2, no free params"
 IRM,,,,,0.1978160980095035,13,"Arjovsky2019, facility as environment, lambda=1.0"
 GroupDRO,,,,,0.1895462954545925,13,"Sagawa2020, facility as group, min-max loss"
-IRM,,,,,0.1978160980095035,13,"Arjovsky2019, facility as environment, lambda=1.0"
-GroupDRO,,,,,0.18954629545459256,13,"Sagawa2020, facility as group, min-max loss"
