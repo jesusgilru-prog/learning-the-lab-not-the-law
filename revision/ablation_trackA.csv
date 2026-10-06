@@ -1,0 +1,5 @@
+rule,flag_R1(FPR),flag_R2(sens)
+(a) LOSO only,0.04583333333333333,0.5041666666666667
+(b) IM only,0.0375,0.05625
+(c) conformal only,0.975,0.9958333333333333
+(d) full Track A (not report-as-physics),0.975,0.9958333333333333
